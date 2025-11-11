@@ -1,0 +1,525 @@
+:root {
+  --bg: #0b0710;
+  --accent: #7b2cff;
+  --accent2: #e14ef0;
+  --txt: #fff;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+/* Remove visualmente a barra, mas o site ainda rola */
+::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+/* Para Firefox */
+html {
+  scrollbar-width: none;
+}
+
+body {
+  background: var(--bg);
+  color: var(--txt);
+  font-family: "Inter", sans-serif;
+  overflow-x: hidden;
+  transition: opacity 0.8s ease;
+  overflow-y: scroll; /* garante o scroll */
+}
+
+
+.fade-in { opacity: 1; animation: fadeIn 1.2s ease forwards; }
+.fade-out { opacity: 0; transition: opacity 0.8s ease; }
+@keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+
+/* ===== HERO ===== */
+.hero {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  perspective: 800px;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: url("img/jinx-hero.jpg") center/cover no-repeat;
+  filter: brightness(0.6); 
+  /* 🌟 AJUSTE Z-INDEX: Base do fundo 🌟 */
+  z-index: 0; 
+}
+
+.hero-section {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #8928ff;
+  overflow: hidden;
+}
+
+.hero-overlay-img img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.35;
+  mix-blend-mode: screen;
+  filter: brightness(1.2); 
+  transform: scale(1.1);
+  transition: transform 1s ease;
+  /* 🌟 AJUSTE Z-INDEX: Fica entre o fundo (0) e o conteúdo (2) 🌟 */
+  z-index: 1; 
+}
+
+.hero-content {
+  position: relative;
+  /* 🌟 AJUSTE Z-INDEX: Garante que o conteúdo (incluindo o Logo) fique na frente 🌟 */
+  z-index: 2; 
+  text-align: center;
+  color: #fff;
+}
+
+.hero-content h1 {
+  font-size: 5rem;
+  color: #c44bff;
+  margin-bottom: 1rem;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero-content button {
+  background: #c44bff;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* Estilos para a imagem que substitui o título JINX */
+.jinx-logo-img {
+  max-width: 600px; 
+  width: 90%; 
+  height: auto; 
+  margin-bottom: 1rem; 
+
+  /* O z-index do pai (.hero-content: 2) já é suficiente, mas garantimos o posicionamento */
+  position: relative; 
+  z-index: 3; /* Pode ser maior que o pai se houverem outros elementos */
+
+  opacity:1;
+  transform: translateY(50px);
+}
+.subtitle {
+  font-size: 1.2rem;
+  color: rgb(255, 255, 255);
+  margin-top: 10px;
+  opacity: 0;
+}
+
+.btn {
+  margin-top: 20px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  color: #fff;
+  border: none;
+  padding: 12px 26px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.3s;
+  opacity: 0;
+}
+.btn:hover { transform: scale(1.05); }
+
+/* ===== TIMELINE ===== */
+.timeline {
+  position: relative;
+  padding: 100px 40px;
+  text-align: center;
+  background: linear-gradient(180deg, #10071b, #190b30);
+  overflow: hidden;
+}
+
+.timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto 60px;
+}
+
+.timeline-title {
+  font-family: "Orbitron", sans-serif;
+  font-size: 2.5rem;
+  color: #ff4eff;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.timeline-title span { color: #9a75ff; }
+.synopsis { color: rgba(255,255,255,0.7); font-size: 1.1rem; letter-spacing: 2px; }
+
+.timeline-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("img/smoke.png") center/cover no-repeat;
+  opacity: 0.25;
+  animation: moveSmoke 12s linear infinite;
+}
+@keyframes moveSmoke {
+  0% {background-position: 0 0;}
+  100% {background-position: 1000px 0;}
+}
+
+/* ===== 3D CARDS ===== */
+.timeline-track {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 2;
+  margin-top: 60px;
+}
+.timeline-track::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  right: 5%;
+  height: 2px;
+  background: repeating-linear-gradient(
+    to right,
+    #b36aff,
+    #b36aff 8px,
+    transparent 8px,
+    transparent 16px
+  );
+  opacity: 0.3;
+  animation: dashMove 4s linear infinite;
+}
+@keyframes dashMove { to {background-position: 100px 0;} }
+
+.one-div {
+  position: relative;
+  height: 280px;
+  width: 220px;
+  background-color: rgb(15, 15, 15);
+  border-radius: 20px;
+  box-shadow: 0 0 40px 0px #7b2cff, inset 0 0 60px 0px #9a75ff;
+  transform-style: preserve-3d;
+  animation: rot 3s infinite ease-in-out;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  overflow: hidden;
+  transition: all 0.8s ease;
+  cursor: pointer;
+}
+.one-div img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  z-index: 1;
+  opacity: 0.9;
+  transition: transform 1s ease;
+}
+.one-div .text {
+  position: relative;
+  z-index: 2;
+  padding: 16px;
+  text-align: center;
+  opacity: 0;
+  transition: all 0.6s ease;
+  background: linear-gradient(0deg, rgba(0,0,0,0.7), transparent);
+  width: 100%;
+}
+.one-div .text h3 {
+  margin-top: 6px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #e14ef0;
+  letter-spacing: 1px;
+}
+.one-div .text p {
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  opacity: 0.8;
+}
+.one-div:hover img { transform: scale(1.15); filter: brightness(0.6); }
+.one-div:hover .text { opacity: 1; transform: translateY(-5px); }
+.one-div:hover {
+  box-shadow: 0 0 25px 50px rgba(0, 0, 0, 0.7),
+              inset 0 0 50px 0px rgba(120, 80, 255, 0.3);
+  transform: translateY(-10px) rotateX(-10deg);
+}
+@keyframes rot {
+  0% { transform: rotateX(-15deg) translateY(0px); }
+  50% { transform: rotateX(-15deg) translateY(-10px); }
+  100% { transform: rotateX(-15deg) translateY(0px); }
+}
+
+/* ===== CHARACTER (Sobre Jinx) ===== */
+.character {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 80px;
+  padding: 100px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: var(--bg); /* Garante que o fundo da seção seja o cor principal */
+}
+
+.char-img img {
+  width: 100%;
+  max-width: 400px; /* Limita o tamanho da imagem da Jinx */
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 50px var(--accent);
+}
+
+.char-text {
+  text-align: left;
+  max-width: 500px;
+}
+
+.char-text h2 {
+  font-family: "Orbitron", sans-serif;
+  font-size: 3rem;
+  color: var(--accent2); /* Cor de destaque */
+  margin-bottom: 20px;
+}
+
+.char-text p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.btn.secondary {
+  /* Estiliza o botão "Saiba Mais" */
+  margin-top: 0;
+  background: var(--accent);
+  padding: 14px 30px;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Responsividade Básica */
+@media (max-width: 900px) {
+  .character {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+  }
+  .char-text {
+    text-align: center;
+  }
+}
+
+
+
+
+/*.outer {
+  width: 500px;          /* aumentei a largura 
+  height: 400px;         /* aumentei a altura 
+  border-radius: 14px;
+  padding: 2px;
+  background: radial-gradient(circle 400px at 0% 0%, #ffffff, #0c0d0d);
+  position: relative;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.08);
+}
+
+/* Pontinho móvel animado 
+.dot {
+  width: 7px;
+  aspect-ratio: 1;
+  position: absolute;
+  background-color: #fff;
+  box-shadow: 0 0 10px #ffffff;
+  border-radius: 100px;
+  z-index: 2;
+  right: 10%;
+  top: 10%;
+  animation: moveDot 6s linear infinite;
+}
+
+@keyframes moveDot {
+  0%, 100% { top: 10%; right: 10%; }
+  25% { top: 10%; right: calc(100% - 35px); }
+  50% { top: calc(100% - 35px); right: calc(100% - 35px); }
+  75% { top: calc(100% - 35px); right: 10%; }
+}
+
+/* ===== CARD INTERNO ===== 
+.card {
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  border: solid 1px #202222;
+  background: radial-gradient(circle 500px at 0% 0%, #444444, #0c0d0d);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #fff;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 0 40px rgba(123, 44, 255, 0.2);
+}
+
+/* Raio de luz no canto 
+.ray {
+  width: 280px;
+  height: 60px;
+  border-radius: 100px;
+  position: absolute;
+  background-color: #c7c7c7;
+  opacity: 0.4;
+  box-shadow: 0 0 60px #fff;
+  filter: blur(10px);
+  transform-origin: 10%;
+  top: 0%;
+  left: 0;
+  transform: rotate(40deg);
+}
+
+/* Vídeo ou conteúdo interno 
+.video {
+  width: 85%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 30px rgba(255,255,255,0.3);
+  z-index: 3;
+}
+
+/* Linhas decorativas 
+  width: 100%;
+  height: 1px;
+  position: absolute;
+  background-color: #2c2c2c;
+}
+
+.topl {
+  top: 10%;
+  background: linear-gradient(90deg, #888888 30%, #1d1f1f 70%);
+}
+
+.bottoml { bottom: 10%; }
+
+.leftl {
+  left: 10%;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(180deg, #747474 30%, #222424 70%);
+}
+
+.rightl {
+  right: 10%;
+  width: 1px;
+  height: 100%;
+}
+  */
+.sobre-jinx {
+  background-color: #0b0710;
+  color: #fff;
+  padding: 60px 10%;
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.texto {
+  flex: 1;
+}
+
+.texto h2 {
+  color: #e14ef0;
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.texto p {
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+}
+
+.texto button {
+  background: #e14ef0;
+  border: none;
+  color: #fff;
+  padding: 10px 25px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.texto button:hover {
+  background: #7b2cff;
+}
+
+.video video {
+  width: 400px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px #7b2cff;
+}
+
+
+.video iframe {
+  border-radius: 15px;
+  border: 2px solid #7b2cff;
+  box-shadow: 0 0 25px #7b2cff;
+  animation: pulse 2s infinite alternate;
+}
+
+@keyframes pulse {
+  from {
+    box-shadow: 0 0 10px #7b2cff, 0 0 20px #e14ef0;
+  }
+  to {
+    box-shadow: 0 0 30px #e14ef0, 0 0 60px #7b2cff;
+  }
+}
+
+.video iframe {
+  width: 550px;   /* aumenta a largura */
+  height: 310px;  /* ajusta a altura proporcionalmente */
+  border-radius: 15px;
+  box-shadow: 0 0 30px #7b2cff, 0 0 60px #e14ef0;
+  border: 2px solid #7b2cff;
+}
