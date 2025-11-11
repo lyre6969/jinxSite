@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jinx — Arcane Showcase</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="fade-in">
+
+  <!-- HERO -->
+  <section class="hero">
+    <!-- Fundo de imagem atrás do texto -->
+    <div class="hero-bg"></div>
+
+    <!-- Imagem extra atrás do nome JINX -->
+    <div class="hero-overlay-img">
+      <img src="img/1315490.png" alt="Jinx Background">
+    </div>
+
+    <div class="hero-content">
+  <img src="img/name.png" alt="Logotipo Jinx" class="jinx-logo-img">
+  <p class="subtitle">A mente caótica de Zaun. Destruição é sua arte.</p>
+  <button class="btn" onclick="transitionTo('story.html')">Ver História</button>
+</div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="timeline">
+    <div class="timeline-header">
+      <h2 class="timeline-title">LÍNEA <span>TEMPORAL</span></h2>
+      <p class="synopsis">SINOPSIS</p>
+    </div>
+
+    <div class="timeline-bg"></div>
+
+    <div class="timeline-track">
+      <div class="one-div">
+        <img src="img/a94eb7233b73c5226214ab129aec16a5.jpg" alt="Inicios">
+        <div class="text">
+          <p class="act">Acto I</p>
+          <h3>INICIOS</h3>
+        </div>
+      </div>
+
+      <div class="one-div">
+        <img src="img/c8d2cc207e815c9902e5ec964fa2aac0.jpg" alt="Recuerdos">
+        <div class="text">
+          <p class="act">Acto II</p>
+          <h3>RECUERDOS</h3>
+        </div>
+      </div>
+
+      <div class="one-div">
+        <img src="img/thumb-1920-1194463.jpg" alt="Venganza">
+        <div class="text">
+          <p class="act">Acto III</p>
+          <h3>VENGANZA</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHARACTER -->
+  <section class="character">
+    <div class="char-img"><img src="img/jinx-character.jpg" alt=""></div>
+    <div class="char-text">
+      <h2>Sobre Jinx</h2>
+      <p>Impulsiva, imprevisível e brilhante — Jinx transforma cada batalha em espetáculo explosivo.</p>
+      <button class="btn secondary" onclick="transitionTo('gallery.html')">Saiba Mais</button>
+    </div>
+   <div class="video">
+      <iframe 
+        width="400" 
+        height="225" 
+        src="https://www.youtube.com/embed/0nlJuwO0GDs" 
+        title="Jinx - Get Jinxed | League of Legends" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+      </iframe>
+    </div>
+  </section>
+  
+<!-- From Uiverse.io by Spacious74 -->
+<div class="outer">
+  <div class="dot"></div>
+  <div class="card">
+    <div class="ray"></div>
+
+    <!--  
+    <video class="video" autoplay muted loop>
+    <iframe class="video" src="https://www.youtube.com/watch?v=3MB3OK3Xnvs" frameborder="0" allowfullscreen></iframe>
+      Seu navegador não suporta vídeos.
+    </video>
+
+    <div>Views</div>
+
+    <div class="line topl"></div>
+    <div class="line leftl"></div>
+    
+    <div class="line bottoml"></div>
+    <div class="line rightl"></div>
+  </div>
+</div>
+-->
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Arcane / lyre_Z</p>
+  </footer>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
